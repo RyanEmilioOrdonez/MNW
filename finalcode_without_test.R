@@ -357,29 +357,3 @@ IMTEST=function(df,y,xv,cv,fr,fc,cc,tm=999){
   
   return(list(S2=S2,IM_p=IM_p))
 }
-
-# df=read.csv('d:/mnw/star.csv')
-# 
-# y="treadss1"  
-# 
-# xs="small_1"  
-# xa="aide_1" 
-# fr='schid1n'
-# 
-# 
-# nulla='newid'
-# nullb='clsid'
-# alt1='schid1n'
-# 
-# XVARSI="aide_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4"
-# XVARAI="small_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4"
-# fatr="schid1n"
-# 
-# 
-# im1=IMTEST(df = df,y = y,xv =xs ,cv =XVARSI,fr = 'schid1n',fc = nulla,cc = alt1,tm = 99 )
-# im2=IMTEST(df = df,y = y,xv =xs ,cv =XVARSI,fr = 'schid1n',fc = nullb,cc = alt1,tm = 99 )
-# 
-# im3=IMTEST(df = df,y = y,xv =xa ,cv =XVARAI,fr = 'schid1n',fc = nulla,cc = alt1,tm = 99 )
-# im4=IMTEST(df = df,y = y,xv =xa ,cv =XVARAI,fr = 'schid1n',fc = nullb,cc = alt1,tm = 99 )
-# 
-# 
