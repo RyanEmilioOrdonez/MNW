@@ -258,30 +258,7 @@ xb="small_1 aide_1"
 #ls2=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'newid',cc ='schid1n',b = B)
 ls3=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'clsid',cc ='schid1n',b = B)
 
-# ls4=MNWTEST(df = df,y = y,xv = xa,cv = XVARA,fc = 'newid',cc ='clsid',b = B)
-# ls5=MNWTEST(df = df,y = y,xv = xa,cv = XVARA,fc = 'newid',cc ='schid1n',b = B)
-# ls6=MNWTEST(df = df,y = y,xv = xa,cv = XVARA,fc = 'clsid',cc ='schid1n',b = B)
-# 
-# ls7=MNWTEST(df = df,y = y,xv = xb,cv = XVARB,fc = 'newid',cc ='clsid',b = B)
-# ls8=MNWTEST(df = df,y = y,xv = xb,cv = XVARB,fc = 'newid',cc ='schid1n',b = B)
-# ls9=MNWTEST(df = df,y = y,xv = xb,cv = XVARB,fc = 'clsid',cc ='schid1n',b = B)
-# 
-# XVARSX="aide_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4 factor(schid1n)"
-# XVARAX="small_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4 factor(schid1n)"
-# XVARBX="treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4  hdg2 hdg3 hdg4 factor(schid1n)"
-# 
-# ls10=MNWTEST(df = df,y = y,xv = xs,cv = XVARSX,fc = 'newid',cc ='clsid',b = B)
-# ls11=MNWTEST(df = df,y = y,xv = xs,cv = XVARSX,fc = 'newid',cc ='schid1n',b = B)
-# ls12=MNWTEST(df = df,y = y,xv = xs,cv = XVARSX,fc = 'clsid',cc ='schid1n',b = B)
-# 	
-# ls13=MNWTEST(df = df,y = y,xv = xa,cv = XVARAX,fc = 'newid',cc ='clsid',b = B)
-# ls14=MNWTEST(df = df,y = y,xv = xa,cv = XVARAX,fc = 'newid',cc ='schid1n',b = B)
-# ls15=MNWTEST(df = df,y = y,xv = xa,cv = XVARAX,fc = 'clsid',cc ='schid1n',b = B)
-# 
-# ls16=MNWTEST(df = df,y = y,xv = xb,cv = XVARBX,fc = 'newid',cc ='clsid',b = B)
-# ls17=MNWTEST(df = df,y = y,xv = xb,cv = XVARBX,fc = 'newid',cc ='schid1n',b = B)
-# ls18=MNWTEST(df = df,y = y,xv = xb,cv = XVARBX,fc = 'clsid',cc ='schid1n',b = B)
-# 
+
 
 lcat=function(lsmnw){
   return(list(H=lsmnw$H,G=lsmnw$G,theta=paste(lsmnw$theta),tau=lsmnw$tau,chi_df=lsmnw$chi_df,MNW_P=lsmnw$MNW_P,bp=lsmnw$bp))
