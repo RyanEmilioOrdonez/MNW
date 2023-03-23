@@ -190,7 +190,8 @@ MNWTEST=function(df,y,xv,cv,fc,cc,b){
   chi_df=ls$chi_df
   
   if (xnum == 1){
-    MNW_P = 2*min(pnorm(tauhat),1-pnorm(tauhat))
+    MNW_P_2s = 2*min(pnorm(tauhat),1-pnorm(tauhat))
+    MNW_P = 1-pnorm(tauhat)
   }else
     if (xnum >= 2)
       MNW_P = 1-pchisq(tauhat, chi_df)
@@ -237,7 +238,7 @@ MNWTEST=function(df,y,xv,cv,fc,cc,b){
   temp_sum = t(temp_U)%*%temp_rej
   boot_p = temp_sum / length(temp_rej)
   
-  return(list(H=ls$H,G=ls$G,theta=ls$theta,tau=ls$tau,chi_df=ls$chi_df,MNW_P=MNW_P,bp=boot_p))
+  return(list(H=ls$H,G=ls$G,theta=ls$theta,tau=ls$tau,chi_df=ls$chi_df,MNW_P_2s=MNW_P_2s,MNW_P=MNW_P,bp=boot_p))
 }
 
 
@@ -287,7 +288,7 @@ ls3=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'clsid',cc ='schid1n',b = B)
 # 
 
 lcat=function(lsmnw){
-  return(list(H=lsmnw$H,G=lsmnw$G,theta=paste(lsmnw$theta),tau=lsmnw$tau,chi_df=lsmnw$chi_df,MNW_P=lsmnw$MNW_P,bp=lsmnw$bp))
+  return(list(H=lsmnw$H,G=lsmnw$G,theta=paste(lsmnw$theta),tau=lsmnw$tau,chi_df=lsmnw$chi_df,MNW_P_2s=lsmnw$MNW_P_2s,MNW_P=lsmnw$MNW_P,bp=lsmnw$bp))
 }
 
 
@@ -384,5 +385,4 @@ IMTEST=function(df,y,xv,cv,fr,fc,cc,tm=999){
 # 
 # im3=IMTEST(df = df,y = y,xv =xa ,cv =XVARAI,fr = 'schid1n',fc = nulla,cc = alt1,tm = 99 )
 # im4=IMTEST(df = df,y = y,xv =xa ,cv =XVARAI,fr = 'schid1n',fc = nullb,cc = alt1,tm = 99 )
-# 
-# 
+
