@@ -1,9 +1,12 @@
 library(dplyr)
-library(timeDate)
-library(timeSeries)
 library(fBasics)
 library(stats)
 
+options(warn=-1)
+
+# index<-function(x){return(c(1:length(x)))}
+# df<-transform(df,b=unlist(tapply(a,group,index)))
+#df %>% group_by(cat) %>% mutate(id = row_number())
 
 VECHTEST=function(df,y,xv,cv,fc,cc){
   stard=df
@@ -187,7 +190,8 @@ MNWTEST=function(df,y,xv,cv,fc,cc,b){
   chi_df=ls$chi_df
   
   if (xnum == 1){
-    MNW_P = 2*min(pnorm(tauhat),1-pnorm(tauhat))
+    MNW_P_2s = 2*min(pnorm(tauhat),1-pnorm(tauhat))
+    MNW_P = 1-pnorm(tauhat)
   }else
     if (xnum >= 2)
       MNW_P = 1-pchisq(tauhat, chi_df)
@@ -234,34 +238,12 @@ MNWTEST=function(df,y,xv,cv,fc,cc,b){
   temp_sum = t(temp_U)%*%temp_rej
   boot_p = temp_sum / length(temp_rej)
   
-  return(list(H=ls$H,G=ls$G,theta=ls$theta,tau=ls$tau,chi_df=ls$chi_df,MNW_P=MNW_P,bp=boot_p))
+  return(list(H=ls$H,G=ls$G,theta=ls$theta,tau=ls$tau,chi_df=ls$chi_df,MNW_P_2s=MNW_P_2s,MNW_P=MNW_P,bp=boot_p))
 }
 
 
-df=read.csv('d:/mnw/star.csv')
-
-B=399
-
-XVARS="aide_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4"
-XVARA="small_1 treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4 hdg2 hdg3 hdg4"
-XVARB="treadssk male nonwhite teach_nonwhite totexp1 freelunch brys2 brys3 brys5 sbq2 sbq3 sbq4  hdg2 hdg3 hdg4"
-
-
-y="treadss1"  
-  
-xs="small_1"  
-xa="aide_1" 
-  
-xb="small_1 aide_1"
-
-#ls1=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'newid',cc ='clsid',b = B)
-#ls2=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'newid',cc ='schid1n',b = B)
-ls3=MNWTEST(df = df,y = y,xv = xs,cv = XVARS,fc = 'clsid',cc ='schid1n',b = B)
-
-
-
 lcat=function(lsmnw){
-  return(list(H=lsmnw$H,G=lsmnw$G,theta=paste(lsmnw$theta),tau=lsmnw$tau,chi_df=lsmnw$chi_df,MNW_P=lsmnw$MNW_P,bp=lsmnw$bp))
+  return(list(H=lsmnw$H,G=lsmnw$G,theta=paste(lsmnw$theta),tau=lsmnw$tau,chi_df=lsmnw$chi_df,MNW_P_2s=lsmnw$MNW_P_2s,MNW_P=lsmnw$MNW_P,bp=lsmnw$bp))
 }
 
 
@@ -305,7 +287,7 @@ IMTEST=function(df,y,xv,cv,fr,fc,cc,tm=999){
   
   for(g in  1:j){
     temp_g=df[df$temp_grp==g,]
-    fs=feols(fmu,data = df,cluster = df[,fc],subset = (df$temp_grp==g),notes = F)
+    fs=feols(fmu,data = df,cluster = df[,fc],subset = (df$temp_grp==g),warn = F)
     
     beta[g,1]=fs$coeftable[1,1]
     omega[g,1]=fs$coeftable[1,2]
