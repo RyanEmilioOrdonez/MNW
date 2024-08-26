@@ -334,8 +334,15 @@ IMTEST=function(df,y,xv,cv,fr,fc,cc,tm=999){
     temp_g=df[df$temp_grp==g,]
     fs=feols(fmu,data = df,cluster = df[,fc],subset = (df$temp_grp==g),warn = F)
     
-    beta[g,1]=fs$coeftable[1,1]
-    omega[g,1]=fs$coeftable[1,2]
+    index <- which(rownames(as.data.frame(fs$coeftable))==xv)
+    # Condition to check
+    condition <- length(index) == 0
+    if(condition == TRUE){
+      beta[g,1] = 0
+      omega[g,1]= 0
+    }else{
+      beta[g,1]=fs$coeftable[index,1]
+      omega[g,1]=fs$coeftable[index,2]}
   }
   
   S2=sd(beta)^2
